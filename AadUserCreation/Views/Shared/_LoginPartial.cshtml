@@ -1,0 +1,15 @@
+﻿@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+  
+      
+        <a class="mdl-navigation__link" asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a>
+
+}
+else
+{
+   
+       <a class="mdl-navigation__link"  asp-area="" asp-controller="Account" asp-action="Signin">Sign in</a>
+   
+}

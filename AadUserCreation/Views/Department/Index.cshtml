@@ -1,0 +1,48 @@
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AadUserCreation.Models.DepartmentList
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Department</h1></div>
+</div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h4>Add department</h4>
+        <form method="post" asp-action="Index" asp-controller="Department" enctype="multipart/form-data">
+           
+                <h6>Departmentname should have the format of: "Dep Departmentname".</h6>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input asp-for="Name" id="departmentname_input_text" class="mdl-textfield__input" type="text">
+                <label class="mdl-textfield__label" for="DepartmentName">Department name</label>
+            </div>
+            <div>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button">
+                    Add Department
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h4>Departments</h4>
+        <div class="demo-list-action mdl-list">
+
+            @foreach (AadUserCreation.Models.DepartmentList dept in ViewBag.DepartmentList)
+            {
+                <div class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <span>@dept.Name</span>
+                    </span>
+                    <a class="mdl-list__item-secondary-action"  asp-action="Delete" asp-route-id="@dept.Id"><i class="material-icons">delete</i></a>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+

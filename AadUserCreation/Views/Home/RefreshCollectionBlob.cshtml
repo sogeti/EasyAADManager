@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col"><h1>User and groups collection.</h1></div>
+</div>
+<div id="divState">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <h3>@ViewBag.BlobCollectionState</h3>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--2-col">
+            <button onclick="RefreshBlob()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button">
+                Update collection.
+            </button>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col">    </div>
+    </div>
+</div>
+    <div class="mdl-grid" id="divProcessing">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col" align="center">
+            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+<script src="~/js/BlobState.js"></script>
+

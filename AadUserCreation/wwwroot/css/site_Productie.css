@@ -1,0 +1,160 @@
+﻿body {
+    display: flex;
+}
+
+.mdl-layout__header {
+    background-color: #E83C7B !important
+}
+
+.file_input_div {
+    margin: auto;
+    width: 250px;
+    height: 40px;
+}
+
+.file_input {
+    float: left;
+}
+
+#file_input_text_div {
+    width: 200px;
+    margin-top: -8px;
+    margin-left: 5px;
+}
+
+.none {
+    display: none;
+}
+
+
+/* Style Select Field */
+select {
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+    padding: 4px 0;
+    font-size: 16px;
+    /*color: rgba(0,0,0, 0.26);*/
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0, 0.12);
+}
+
+    /* Remove focus */
+    select:focus {
+        outline: none;
+    }
+/* Remove focus */
+
+/* Hide label */
+/*.mdl-selectfield label {
+    display: none;
+}*/
+
+/* Use custom arrow */
+.mdl-selectfield select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.mdl-selectfield {
+    font-family: 'Roboto','Helvetica','Arial',sans-serif;
+    position: relative;
+    padding: 20px 0;
+    width: 300px;
+}
+
+    .mdl-selectfield:after {
+        position: absolute;
+        top: 2em;
+        right: 0.5em;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: 0.375em solid rgba(0,0,0, 0.12);
+        pointer-events: none;
+    }
+
+
+
+
+
+
+.demo-list-action {
+    width: 300px;
+}
+
+
+
+.mdl-dialog {
+    border: none;
+    box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
+    width: 280px;
+}
+
+.mdl-dialog__title {
+    padding: 24px 24px 0;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.mdl-dialog__actions {
+    padding: 8px 8px 8px 24px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+    .mdl-dialog__actions > * {
+        margin-right: 8px;
+        height: 36px;
+    }
+
+        .mdl-dialog__actions > *:first-child {
+            margin-right: 0;
+        }
+
+.mdl-dialog__actions--full-width {
+    padding: 0 0 8px 0;
+}
+
+    .mdl-dialog__actions--full-width > * {
+        height: 48px;
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        padding-right: 16px;
+        margin-right: 0;
+        text-align: right;
+    }
+
+.mdl-dialog__content {
+    padding: 20px 24px 24px 24px;
+    color: rgba(0,0,0, 0.54);
+}
+
+.rowClass {
+    vertical-align: middle !important;
+    height: 90px;
+}
+
+.cellClass {
+    vertical-align: middle !important;
+    height: 90px;
+}
+
+.divClass {
+    margin-top: auto;
+}
+
+​

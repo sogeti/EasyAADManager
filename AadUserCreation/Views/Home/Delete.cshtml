@@ -1,0 +1,87 @@
+@model AadUserCreation.Models.User
+
+<script src="~/js/removeUser.js"></script>
+
+        <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Remove user</h1></div>
+    <input name="hiddenMailAccountDomain" id="hiddenMailAccountDomain" type="hidden" value=@ViewBag.MailAccountDomain />
+</div>
+<div>
+    <form method="post" asp-action="DeleteUser" asp-controller="Home" enctype="multipart/form-data" id="RemoveUserPost_form">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--4-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty" data-upgraded=",MaterialTextfield">
+                    <input asp-for="UPN" id="emailupn_input_text" class="mdl-textfield__input" type="text">
+                    <label class="mdl-textfield__label" for="UPN">Email</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+        </div>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--4-col"></div>
+            <div class="mdl-cell mdl-cell--2-col">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button">
+                    Remove
+                </button>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">    </div>
+        </div>
+    </form>
+</div>
+<div class="mdl-grid" id="divProcessing">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--4-col" align="center">
+        <div class="mdl-spinner mdl-js-spinner is-active"></div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+</div>
+
+<div class="mdl-grid" id="errorNotify"  style="display: none;">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--4-col" align="center">
+        <table border=0>
+            <tr class="rowClass">
+                <td class="cellClass">
+                    <div class="divClass"><i class="material-icons" style="font-size:60px;color:red;">error</i></div>
+                </td>
+                <td class="cellClass">
+                    <div class="divClass">Error, please contact administrator. <BR /> Refresh page for a new try.</div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+</div>
+
+<dialog id="dialogRemove" class="mdl-dialog">
+    <h3 class="mdl-dialog__title">Remove</h3>
+    <div class="mdl-dialog__content">
+
+        <table border=0>
+            <tr class="rowClass">
+                <td class="cellClass">
+                    <div class="divClass">
+                        <i class="material-icons" style="font-size:60px;color:red;">delete</i>
+                    </div>
+                </td>
+                <td class="cellClass">
+                    <div class="divClass">
+                        <p>User is about to be removed, continue?</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" id="NoButton" class="mdl-button">No</button>
+        <button type="button" id="OkayButton" class="mdl-button">Okay</button>
+    </div>
+</dialog>
+
+
+<script src="~/js/DeleteDialog.js"></script>
+

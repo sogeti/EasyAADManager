@@ -1,0 +1,47 @@
+
+@{
+    ViewData["Title"] = "CsvUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*WIP : Upload CSV and create users*@
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Create multiple users</h1></div>
+
+</div>
+<form method="post" asp-action="Index" asp-controller="CsvUpload" enctype="multipart/form-data">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--6-col">
+            <div class="file_input_div">
+                <div class="file_input">
+
+                    <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                        <i class="material-icons">file_upload</i>
+                        <input id="file_input_file" name="files" class="none" type="file" />
+                    </label>
+                </div>
+                <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+                    <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" />
+                    <label class="mdl-textfield__label" for="file_input_text"></label>
+                </div>
+
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col"></div>
+    </div>
+
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--2-col">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button" disabled>
+                Process
+            </button>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col">    </div>
+
+    </div>
+</form>
+<script src="~/js/file_input.js"></script>

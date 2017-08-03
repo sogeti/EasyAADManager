@@ -1,0 +1,39 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AadUserCreation.Models.LogData
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Logs</h1></div>
+</div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+     
+
+        <div class="mdl-list">
+            @foreach (AadUserCreation.Models.LogData log in ViewBag.LogList)
+            {
+                <div class="mdl-list__item">
+                    <span style="width:120px">
+                        @log.Timestamp.ToString("dd MMM HH:mm")
+                    </span>
+                    <span  style="width:50px">
+                        @if (@log.ActionType != null)
+                        {
+                            <i class="material-icons mdl-list__item-icon" style="font-size:23px;color:black;">@log.ActionType.ToLower()</i>
+                        }
+                        </span>
+                    <span style="width:400px">
+                        @log.DisplayName
+                    </span>
+                  
+                    <span  style="width:10px">
+                        <a class="mdl-list__item-secondary-action" asp-action="Details" asp-route-id="@log.RowKey"><i class="material-icons">info</i></a>
+                    </span>
+                </div>
+            }
+        </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>

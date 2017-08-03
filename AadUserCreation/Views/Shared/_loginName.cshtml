@@ -1,0 +1,16 @@
+@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+
+
+    <span >@User.Identity.Name</span>
+
+}
+else
+{
+
+<span ></span>
+
+}
+

@@ -1,0 +1,147 @@
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AadUserCreation.Models.GroupUser
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--8-col"><h1>Manage user departments and apps</h1></div>
+    <input name="hiddenMailAccountDomain" id="hiddenMailAccountDomain" type="hidden" value=@ViewBag.MailAccountDomain />
+</div>
+<div>
+    <form method="post" asp-action="EditUser" asp-controller="Home" enctype="multipart/form-data" id="userPost_form">
+        
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">    </div>
+            <div class="mdl-cell mdl-cell--4-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty" data-upgraded=",MaterialTextfield" >
+                    <input asp-for="UPN" id="emailupn_input_text" class="mdl-textfield__input" type="text" disabled>
+                    <label class="mdl-textfield__label" for="UPN">Email</label>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col"></div>
+            <div class="mdl-cell mdl-cell--2-col">    </div>
+        </div>
+        
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--4-col" style="padding-right: 80px">
+                <h4>Select groups</h4>
+                <ul class="demo-list-control mdl-list">
+                    @if (Model.Groups != null)
+                    {
+                        @for (int i = 0; i < Model.Groups.Count(); i++)
+                        {
+                            <li class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    @Model.Groups[i].Name
+                                </span>
+                                <span class="mdl-list__item-secondary-action">
+                                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="@Model.Groups[i].Name" asp-for="@Model.Groups[i].Name">
+                                        <input type="checkbox" id="@Model.Groups[i].Name" class="mdl-switch__input" checked asp-for="@Model.Groups[i].Selected" />
+                                    </label>
+                                </span>
+                                <input asp-for="@Model.Groups[i].Name" type="hidden">
+                            </li>
+                        }
+                    }
+                   
+                </ul>
+            </div>
+                <div class="mdl-cell mdl-cell--4-col"  style="padding-right: 80px">
+                    <h4>Select Departments</h4>
+                    <ul class="demo-list-control mdl-list">
+                        @if (Model.Departments != null)
+                        {
+                            @for (int i = 0; i < Model.Departments.Count(); i++)
+                            {
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        @Model.Departments[i].Name
+                                    </span>
+                                    <span class="mdl-list__item-secondary-action">
+                                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="@Model.Departments[i].Name" asp-for="@Model.Departments[i].Name">
+                                            <input type="checkbox" id="@Model.Departments[i].Name" class="mdl-switch__input" checked asp-for="@Model.Departments[i].Selected" />
+                                        </label>
+                                    </span>
+                                    <input asp-for="@Model.Departments[i].Name" type="hidden">
+                                </li>
+                            }
+
+                        }
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col"></div>
+                <div class="mdl-cell mdl-cell--4-col"></div>
+                <div class="mdl-cell mdl-cell--2-col">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button">
+                        Process
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--2-col">    </div>
+            </div>
+</form>
+</div>
+
+
+<div class="mdl-grid" id="divProcessing">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--4-col" align="center">
+        <div class="mdl-spinner mdl-js-spinner is-active"></div>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+</div>
+
+<dialog id="dialog" class="mdl-dialog">
+    <h3 class="mdl-dialog__title">Succes</h3>
+    <div class="mdl-dialog__content">
+
+        <table border=0>
+            <tr class="rowClass">
+                <td class="cellClass">
+                    <div class="divClass">
+                        <i class="material-icons" style="font-size:60px;color:green;">done</i>
+                    </div>
+                </td>
+                <td class="cellClass">
+                    <div class="divClass">
+                        <p>Updating group membership of user has started.</p><p id="jobId" hidden>jobId</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" id="closeButton" class="mdl-button">Close</button>
+        <button type="button" id="informationButton" class="mdl-button">Information</button>
+    </div>
+</dialog>
+<div class="mdl-grid" id="errorNotify" style="display: none;">
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    <div class="mdl-cell mdl-cell--4-col" align="center">
+        <table border=0>
+            <tr class="rowClass">
+                <td class="cellClass">
+                    <div class="divClass"><i class="material-icons" style="font-size:60px;color:red;">error</i></div>
+                </td>
+                <td class="cellClass">
+                    <div class="divClass">Error, please contact administrator. <BR /> Refresh page for a new try.</div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+</div>
+
+
+<script src="~/js/EditUser.js"></script>
+<script src="~/js/EditProccesingUser.js"></script>
+<script src="~/js/EditDialog.js"></script>
+

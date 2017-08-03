@@ -1,0 +1,27 @@
+@model AadUserCreation.Models.LogData
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Log Details</h1></div>
+</div>
+
+
+
+
+
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <h3>@Model.ActionType @Model.DisplayName action executed by: @Model.PartitionKey </h3>
+        <p>Execution time: @Model.Timestamp.ToString("dd MMM HH:mm")</p>
+       <H4>Log</H4>
+            <textarea type="text" rows="15" style="width:100%">@Model.LogText</textarea>
+        <p>JobId: @Model.RowKey</p>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>

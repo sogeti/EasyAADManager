@@ -1,0 +1,47 @@
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AadUserCreation.Models.GroupList
+
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col"><h1>Group</h1></div>
+</div>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h4>Add group</h4>
+        <form method="post" asp-action="Index" asp-controller="Group" enctype="multipart/form-data">
+            
+                <H6>Prefix group names with App or AZ .</H6>
+          
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input asp-for="Name" id="groupname_input_text" class="mdl-textfield__input" type="text">
+                <label class="mdl-textfield__label" for="GroupName">Group name</label>
+            </div>
+            <div>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="process_button">
+                    Add Group
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <h4>Groups</h4>
+        <div class="demo-list-action mdl-list">
+
+            @foreach (AadUserCreation.Models.GroupList dept in ViewBag.GroupList)
+            {
+                <div class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <span>@dept.Name</span>
+                    </span>
+                    <a class="mdl-list__item-secondary-action" asp-action="Delete" asp-route-id="@dept.Id"><i class="material-icons">delete</i></a>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
