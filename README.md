@@ -7,12 +7,12 @@ The front office or HR controls the onboarding of new employees. This easy AAD U
 The App seperates responsibilities during the creation of AAD users and Groups in two areas. The front office triggers the creation or editing of a user and assinges groups via the App. the backoffice, AAD admins, controlS the steps and details needed for the creation of the user of group.
 
 Solution roles:
-![alt text](/Docs/Images/responsebilities.png "Solution")
+![alt text](/Docs/Images/Resps.png "Solution")
 
 ## Cloud Resources
 
 Cloud Resources:
-![alt text](/Docs/Images/Solution overview.png "Cloud resources")
+![alt text](/Docs/Images/Solution.png "Cloud resources")
 
 ## Google Material Design
 
