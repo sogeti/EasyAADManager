@@ -55,11 +55,13 @@ The ARM templates follow the organization of Core and Application resources. See
 ### Create user
 
 ![alt text](/Docs/Images/gmd-newuser.png "Solution")
+
 The create user screen constructs the mail address from firstname, suffix, lastname via a simple JavaScript function, change this if you want something else. There should be at least one department group in AAD for the creation of a user.
 
 ### Edit groupmembership
 
 ![alt text](/Docs/Images/gmd-editgroups.png "Solution")
+
 The groupmembership editing screen collects all AAD groups with prefix 'Dep', 'Az' or 'App'. See file [AadCollectieFromAad.cs](/AadUserCreation/Data/AadCollectieFromAad.cs)
 
 ## Implementation
