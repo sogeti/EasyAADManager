@@ -1,6 +1,6 @@
 # Easy AAD User and Groups Manager
 
-An ASP.NET Core 1.0 website with Google Material Design, Azure Active Directory Graph API and Azure Autoamtion Runbooks for managing Azure Active Directory in an easy controlled way.
+An ASP.NET Core 1.0 website with Google Material Design, Azure Active Directory Graph API and Azure Automation Runbooks for managing Azure Active Directory in an easy controlled way.
 
 ## Updates
 
@@ -11,7 +11,7 @@ An ASP.NET Core 1.0 website with Google Material Design, Azure Active Directory 
 
 The front office or HR controls the onboarding of new employees. This easy AAD User and groups manager app supports the onboarding and changing roles of employees. Without the need of getting in to the technical, and complex, Azure portal by HR people.
 
-The App seperates responsibilities during the creation of AAD users and Groups in two areas. The front office triggers the creation or editing of a user and assinges groups via the App. the backoffice, AAD administrators, controls the steps and details needed for the creation of the user or group.
+The App separates responsibilities during the creation of AAD users and Groups in two areas. The front office triggers the creation or editing of a user and assigns groups via the App. the backoffice, AAD administrators, controls the steps and details needed for the creation of the user or group.
 
 Solution roles:
 ![alt text](/Docs/Images/Resps.jpg "Solution")
@@ -27,12 +27,12 @@ The Web App uses several Cloud resources.
 
 * Azure Automation Runbook, maintained by administrators.
   * Edit, Create, Delete users or groups.
-  * Send notification mail with temproraly password.
-  * Logs activtiy to Azure Blob Storage.
+  * Send notification mail with temporally password.
+  * Logs activity to Azure Blob Storage.
 
 * Azure Blob Storage.
   * Stores application and runbook logdata.
-  * Stores temproraly user and group data.
+  * Stores temporaly user and group data.
 
 * Azure Active Directory
   * Holds users and groups
@@ -40,9 +40,9 @@ The Web App uses several Cloud resources.
 
 ![Image Cloud resources](/Docs/Images/Solution.png "Cloud resources")
 
-All Azure Resources are created via ARM templates except AAD and its settings. These settings are the regitration of the WebApp and the inital group configuration. See ![blog post jurgen, hard to setup aad].
+All Azure Resources are created via ARM templates except AAD and its settings. These settings are the registration of the WebApp and the initial group configuration. See [RBAC model for Azure AD](http://www.identityandcloud.com/2017/05/rbac-model-for-azure-ad/).
 
-The ARM templates follow the organization of Core and Application resources. See ![blog post Clemens]. The ARM Tempaltes can be found in the ARM folder.
+The ARM templates follow the organization of Core and Application resources. See [CICD for a cloud native services based system on Azure.](http://www.clemensreijnen.nl/post/2017/01/16/CICD-for-a-cloud-native-services-based-system-on-Azure) The ARM Templates can be found in the ARM folder.
 
 ## UI
 
@@ -55,7 +55,7 @@ The ARM templates follow the organization of Core and Application resources. See
 ### Create user
 
 ![alt text](/Docs/Images/gmd-newuser.png "Solution")
-The create user screen constructs the mail adres from firstname, suffix, lastname via a simple Javascript function, change this if you want something else. There should be at least one department group in AAD for the creation of a user.
+The create user screen constructs the mail address from firstname, suffix, lastname via a simple JavaScript function, change this if you want something else. There should be at least one department group in AAD for the creation of a user.
 
 ### Edit groupmembership
 
@@ -65,7 +65,7 @@ The groupmembership editing screen collects all AAD groups with prefix 'Dep', 'A
 ## Implementation
 
 The Web Application is implemented with ASP Net Core in Visual Studio 2017 Preview.
-The solution is organized in Controllers, Business Services and Data Services with the default Dependency Injectinion of ASP Net Core 1.0.
+The solution is organized in Controllers, Business Services and Data Services with the default Dependency Injection of ASP Net Core 1.0.
 
 ### Authentication
 
@@ -84,11 +84,11 @@ Within Azure Active Directory users are restricted by application group who can 
 
 ### App Settings
 
-The Application Settings are holding the authentication settings, webhooks urls and storage account connection string. Default ASP Net Core appsetings.{environment}.json files are used for the different stages. An entry in the gitignore takes care no configuration settings are stored in Githuib.
+The Application Settings are holding the authentication settings, webhooks urls and storage account connection string. Default ASP Net Core appsetings.{environment}.json files are used for the different stages. An entry in the gitignore takes care no configuration settings are stored in GitHub.
 
 ### ARM Templates
 
-The provisioning of the Cloud Resources is seperated in Core Cloud resources and Application Cloud resousorces. Core are the App Service Plan, Storage Account, Azure Automation Runbooks. The application resource is the WebApp. Core resources need to be deployed first.
+The provisioning of the Cloud Resources is separated in Core Cloud resources and Application Cloud resousrces. Core are the App Service Plan, Storage Account, Azure Automation Runbooks. The application resource is the WebApp. Core resources need to be deployed first.
 
 ## Getting Started
 
