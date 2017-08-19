@@ -25,12 +25,18 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
-    <Content Include="azuredeploy.json" />
-    <Content Include="azuredeploy.parameters.json" />
+    <Content Include="AppServicesPlan\AppServicesPlan.json" />
+    <Content Include="AppServicesPlan\AppServicesPlan.parameters.json" />
+    <None Include="Automation\Automation.json" />
+    <None Include="Automation\Automation.parameters.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <None Include="KeyVault\KeyVault.json" />
+    <None Include="KeyVault\KeyVault.parameters.json" />
+    <None Include="StorageAccount\StorageAccount.json" />
+    <None Include="StorageAccount\StorageAccount.parameters.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

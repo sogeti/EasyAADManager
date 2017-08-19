@@ -1,0 +1,122 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "tenantId": {
+      "type": "string",
+      "metadata": {
+        "description": "Tenant Id for the subscription and use assigned access to the vault. Available from the Get-AzureRMSubscription PowerShell cmdlet"
+      }
+    },
+    "objectId": {
+      "type": "string",
+      "metadata": {
+        "description": "Object Id of the AAD user or service principal that will have access to the vault. Available from the Get-AzureRMADUser or the Get-AzureRMADServicePrincipal cmdlets"
+      }
+    },
+    "objectIdadmin": {
+      "type": "string",
+      "metadata": {
+        "description": "Object Id of the AAD user or service principal that will have access to the vault. Available from the Get-AzureRMADUser or the Get-AzureRMADServicePrincipal cmdlets"
+      }
+    }
+  },
+  "variables": {
+    "keyVaultName": "[concat(parameters('organization'), '-akv-', parameters('project'), '-', parameters('environment'))]",
+    "StorageAccountName":  ""
+  },
+  "resources": [
+    {
+      "name": "[variables('StorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-06-15",
+      "dependsOn": [],
+      "properties": {
+        "accountType": "Standard_LRS"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "name": "[variables('keyVaultName')]",
+      "apiVersion": "2015-06-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "KeyVault"
+      },
+      "properties": {
+        "enabledForDeployment": true,
+        "enabledForTemplateDeployment": true,
+        "enabledForVolumeEncryption": false,
+        "tenantId": "[parameters('tenantId')]",
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('tenantId')]",
+            "objectId": "[parameters('objectId')]",
+            "permissions": {
+              "keys": [
+                "All"
+              ],
+              "secrets": [
+                "All"
+              ]
+            }
+          },
+          {
+            "tenantId": "[parameters('tenantId')]",
+            "objectId": "[parameters('objectIdadmin')]",
+            "permissions": {
+              "keys": [
+                "All"
+              ],
+              "secrets": [
+                "All"
+              ]
+            }
+          }
+        ],
+        "sku": {
+          "name": "Standard",
+          "family": "A"
+        }
+      },
+      "resources": [
+        {
+          "type": "secrets",
+          "name": "storageaccountname",
+          "apiVersion": "2015-06-01",
+          "properties": {
+            "value": "[variables('StorageAccountName')]"
+          },
+          "dependsOn": [
+            "[concat('Microsoft.KeyVault/vaults/', variables('keyVaultName'))]",
+            "[concat('Microsoft.Storage/storageAccounts/',variables('StorageAccountName'))]"
+          ]
+        },
+        {
+          "type": "secrets",
+          "name": "storageaccountkey",
+          "apiVersion": "2015-06-01",
+          "properties": {
+            "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')), '2015-06-15').key1]"
+          },
+          "dependsOn": [
+            "[concat('Microsoft.KeyVault/vaults/', variables('keyVaultName'))]",
+            "[concat('Microsoft.Storage/storageAccounts/',variables('StorageAccountName'))]"
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": {
+  }
+}
