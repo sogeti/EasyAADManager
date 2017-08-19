@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "_artifactsLocation": {
+      "value": "https://assessdevartifacts.blob.core.windows.net/armadminapi"
+    },
+    "_artifactsLocationSasToken": {
+      "value": "?st=2017-01-06T10%3A28%3A00Z&se=2018-01-07T10%3A28%3A00Z&sp=rl&sv=2015-12-11&sr=c&sig=dIdSKpx8ZDLju2BsYwhc%2FrmBxtyTLs94rLu0wdwh0RE%3D"
+    },
+    "environment": {
+      "value": "d"
+    },
+    "organization": {
+      "value": "sogeti"
+    },
+    "project": {
+      "value": "aadusermanagement"
+    }
+  }
+}

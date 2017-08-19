@@ -1,0 +1,109 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "_artifactsLocation": {
+      "type": "string"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "AdminApiResourceTemplateFolder": "nestedtemplates",
+    "AdminApiResourceTemplateFileName": "WebApp.json",
+    "keyVaultName": "[concat(parameters('organization'), '-akv-', parameters('project'), '-', parameters('environment'))]",
+    "hostingPlanName": "[concat(parameters('organization'), '-sp-', parameters('project'), '-', parameters('environment'), '-we')]",
+    "WebAppName": "[concat(parameters('organization'), '-web-', parameters('project'), '-', parameters('environment'))]"
+
+  },
+  "resources": [
+    {
+      "name": "WebAppResource",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "dependsOn": [],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('AdminApiResourceTemplateFolder'), '/', variables('AdminApiResourceTemplateFileName'), parameters('_artifactsLocationSasToken'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "hostingPlanName": {
+            "value": "[variables('hostingPlanName')]"
+          },
+          "WebAppName": {
+            "value": "[variables('WebAppName')]"
+          },
+          "storageaccountname": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "storageaccountname"
+            }
+          },
+          "storageaccountkey": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "storageaccountkey"
+            }
+          },
+          "ClientId": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "ClientId"
+            }
+          },
+          "Domain": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "Domain"
+            }
+          },
+          "TenantId": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "TenantId"
+            }
+          },
+          "clientSecret": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "clientSecret"
+            }
+          },
+          "WebHookUrlCreateUsersRunbook": {
+            "reference": {
+              "keyVault": {
+                "id": "[concat(resourceGroup().id, '/providers/Microsoft.KeyVault/vaults/', variables('keyVaultName'))]"
+              },
+              "secretName": "WebHookUrlCreateUsersRunbook"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
