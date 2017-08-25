@@ -1,0 +1,24 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "d"
+    },
+    "organization": {
+      "value": "sogeti"
+    },
+    "project": {
+      "value": "aadusermanagement"
+    },
+    "tenantId": {
+      "value": "f42efa9e-e9a2-4721-afab-870c5f0664a2"
+    },
+    "objectId": {
+      "value": "f7fdf4cb-b966-4299-8eb5-8fdd5c9b6fb9"
+    },
+    "objectIdadmin": {
+      "value": "f7fdf4cb-b966-4299-8eb5-8fdd5c9b6fb9"
+    }
+  }
+}
