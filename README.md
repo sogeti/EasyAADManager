@@ -4,8 +4,9 @@ An ASP.NET Core 1.0 website with Google Material Design, Azure Active Directory 
 
 ## Updates
 
-* 01-8-2017 Initial release to GitHub
-* 15-8-2017 Update ReadMe
+* 01-08-2017 Initial release to GitHub
+* 15-08-2017 Update ReadMe
+* 24-10-2017 Migrate to NET Core 2
 
 ## The idea
 
